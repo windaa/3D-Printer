@@ -4,11 +4,7 @@
   "description": "application for bachelor thesis",
   "main": "app.js",
   "scripts": {
-<<<<<<< HEAD
-    "start" : "node server/app.js"
-=======
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> parent of e07a378... Structure & New Folder
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "*",

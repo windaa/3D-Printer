@@ -20,6 +20,11 @@ mongoose.Promise = global.Promise;
 mongoose.createConnection(uri);
 var db = mongoose.connection;
 
+db.on("error", console.error.bind(console, "connection error"));
+db.once("open", function (callback) {
+  console.log("connection with database are establish");
+});
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
@@ -28,6 +33,13 @@ app.set('view engine', 'ejs');
 
 app.listen(3000);
 console.log('Running on port 3000...');
+
+
+var test = new mongoose.Schema({
+	name : String
+});
+
+var Test = mongoose.model('test', test);
 
 app.get('/', function(req, res){
 	res.render('index.ejs');
@@ -38,7 +50,14 @@ app.get('/submit', function(req, res){
 });
 
 app.get('/check', function(req, res){
-	res.render('material.ejs');
+	
+	res.render('material.ejs',{info:''});
+	console.log('hello');
+
+	Test.find({}, function(err, result) {
+    if (err) throw err;
+   	console.log(result);
+  	});
 });
 
 app.get('/help', function(req, res){
@@ -88,7 +107,7 @@ app.post('/upload', function(req, res){
 		
 
 		// Alternative 3
-		
+		/**
 		var args = {
 			data: file,
 			headers: {
@@ -99,7 +118,8 @@ app.post('/upload', function(req, res){
 		client.post('http://192.168.137.20/api/files/local', args, function (data, response) {
     	console.log(req.files);
 		});
+		**/
 	}
 
-	res.render('index.ejs');
+	res.render('uploadInfo.ejs',{ info: filename});
 });
