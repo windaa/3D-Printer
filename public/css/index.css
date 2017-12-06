@@ -5,12 +5,11 @@ body {
 
 h4 {
     margin: 0;
-    margin-left: 15px;
+    margin-left: 5px;
     font-family: 'Roboto', sans-serif;
     color: black;
     margin-top: 5px;
 }
-
 
 header {
   padding: 20px 0;
@@ -41,7 +40,7 @@ header p {
 .jumbotron {
   display: flex;
   align-items: center;
-  background-color: #FFE06F;
+  background-color: white;
   color: #ffffff;
   height: 600px;
 }
@@ -77,14 +76,14 @@ button
 */
 #submitButton {
   background-color: white;
-  font-size: 16px;
-  color: #f95959;
+  font-size: 20px;
+  color:black;
 }
 
-#submitButton:hover {
-  background-color: #ff4242;
-  font-size: 16px;
-  color: #ffffff;
+#checkButton {
+  background-color: white;
+  font-size: 20px;
+  color:black;
 }
 
 #navHelp {
@@ -124,16 +123,18 @@ a:link, a:visited {
 }
 
 nav a:hover {
-  color:#f95959;
+    color:#f95959;
 }
 
 #docImage {
-  width: 150px;
-  height: 150px;
+    width: 100px;
+    height: 100px;
+    margin-left: 0px;
 }
 
 #databaseImage {
-  width: 150px;
-  height: 150px;
+    width: 100px;
+    height: 100px;
+    margin-left: 0px;
 }
 

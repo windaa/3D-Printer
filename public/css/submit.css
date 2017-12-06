@@ -41,7 +41,7 @@ header p {
 .jumbotron {
   display: flex;
   align-items: center;
-  background-color: #FFE06F;
+  background-color: white;
   color: #ffffff;
   height: 600px;
 }
@@ -76,15 +76,15 @@ section .row  img {
 button
 */
 #submitButton {
-  background-color: white;
+  background-color: #FFD435;
   font-size: 20px;
-  color:black;
+  color: #ffffff;
 }
 
 #submitButton:hover {
   background-color: #FFD435;
   font-size: 20px;
-  color: #ffffff;
+  color:black;
 }
 
 #navHelp {
@@ -127,13 +127,4 @@ nav a:hover {
   color:#f95959;
 }
 
-#docImage {
-  width: 150px;
-  height: 150px;
-}
-
-#databaseImage {
-  width: 150px;
-  height: 150px;
-}
 

@@ -19,6 +19,7 @@
 	<body>
 	    <header class="container">
 	  	     <div class="row">
+	  	     	
 	  	     	<div class="col-sm-8">
 	  	     		<h1 class="col-sm-8">3D Printer</h1>
 	  	     	</div>
@@ -37,19 +38,17 @@
   	<section class="jumbotron">
       	<div class="container">
           <div class="row">
-          	<div class="col-sm-4">
+          	<div class="col-sm-8">
           		<form action="/submit" method="get">
-          		<input type="image" id="docImage" src="images/text-documents.png">
-          		<h4>Submit Gcode</h4>	
-          		</input>
+          		<img type="image" id="docImage" src="images/text-documents.png">
+          		<input type="submit" id="submitButton" value="Submit Gcode"></input>	
           		</form>
           	</div>
           	
-          	<div class="col-sm-4">
+          	<div class="col-sm-8">
           		<form action="/check" method="get">
-          		<input type="image" id="docImage" src="images/database.png">
-          		<h4>Check Material</h4>
-          		</input>
+          		<img type="image" id="docImage" src="images/database.png">
+          		<input type="submit" id="checkButton" value="Store Material"></input>	
           		</form>
           	</div>
 

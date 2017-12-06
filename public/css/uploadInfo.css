@@ -41,7 +41,7 @@ header p {
 .jumbotron {
   display: flex;
   align-items: center;
-  background-color: #FFE06F;
+  background-color: white;
   color: #ffffff;
   height: 600px;
 }

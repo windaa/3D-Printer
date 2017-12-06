@@ -13,11 +13,10 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 // var args;
 
-
 //connect to mongoose
 var uri = 'mongodb://3DP_INF:3dpinf@ds163701.mlab.com:63701/3dp_inf';
 mongoose.Promise = global.Promise;
-mongoose.createConnection(uri);
+mongoose.connect(uri);
 var db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error"));
@@ -34,13 +33,6 @@ app.set('view engine', 'ejs');
 app.listen(3000);
 console.log('Running on port 3000...');
 
-
-var test = new mongoose.Schema({
-	name : String
-});
-
-var Test = mongoose.model('test', test);
-
 app.get('/', function(req, res){
 	res.render('index.ejs');
 });
@@ -49,15 +41,13 @@ app.get('/submit', function(req, res){
 	res.render('submit.ejs');
 });
 
-app.get('/check', function(req, res){
-	
-	res.render('material.ejs',{info:''});
-	console.log('hello');
 
-	Test.find({}, function(err, result) {
-    if (err) throw err;
-   	console.log(result);
-  	});
+app.get('/check', function(req, res){
+
+	db.collection("test").findOne({name:'zahid'}, function(err, data) {
+		console.log(data.name)
+		res.render('material.ejs',{info:data.name});
+	});
 });
 
 app.get('/help', function(req, res){
@@ -122,4 +112,5 @@ app.post('/upload', function(req, res){
 	}
 
 	res.render('uploadInfo.ejs',{ info: filename});
+
 });
