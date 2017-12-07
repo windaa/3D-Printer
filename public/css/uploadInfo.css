@@ -60,7 +60,7 @@ header p {
 }
 
 .jumbotron p {
-  font-size: 24;
+  font-size: 20px;
   color: black;
 }
 
@@ -128,6 +128,16 @@ nav a:hover {
   color:#f95959;
 }
 
+table,th,tr,td {
+  border: 1px solid black;
+}
+
+tr,th,td {
+    color: black;
+    font-size: 20px;
+    padding: 5px;
+    text-align: left;
+}
 #docImage {
   width: 150px;
   height: 150px;

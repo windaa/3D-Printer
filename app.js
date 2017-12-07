@@ -44,10 +44,32 @@ app.get('/submit', function(req, res){
 
 app.get('/check', function(req, res){
 
-	db.collection("test").findOne({name:'zahid'}, function(err, data) {
-		console.log(data.name)
-		res.render('material.ejs',{info:data.name});
+	/**
+	db.collection("current_material").findOne({materialID:'1001'}, function(err, data) {
+		console.log(data)
+		res.render('material.ejs',
+			{	matID:data.materialID,	
+				matName:data.materialName,
+				matFarbe:data.materialFarbe,
+				matFil:data.filament
+			});
 	});
+	**/
+
+	db.collection("current_material").find({}).toArray(function(err, data) {
+    if (err) throw err;
+    console.log(data);
+    res.render('material.ejs', {datas:data});
+  	});
+
+	/**
+	var array = [];
+	var cursor = db.collection("current_material").find({});
+	cursor.forEach(function(err, data){
+		array.push(data.materialID);
+		res.render('material.ejs', {datas:array});
+	});
+	**/
 });
 
 app.get('/help', function(req, res){
@@ -59,9 +81,56 @@ app.post('/upload', function(req, res){
 	if(req.files) {
 		var file = req.files.filename;
 		var filename = file.name;
-		var alert;
+		var fileInString;
+		
 
 		file.mv('./uploads/' + filename);
+
+		fs.readFile('./uploads/' + filename, 'utf8', function (err,data) {
+		  if (err) {
+		    return console.log(err);
+		  }
+		  fileInString = data;
+		  console.log(fileInString);
+
+		  	var words = fileInString.split(";");
+			var list = [];
+			var filament;
+			var materialdichte;
+			console.log(words);
+
+			for(var i = 0; i < words.length; i++) {
+			    var part = [];
+			    list[i] = words[i];
+				part = list[i].split(":");
+			 	if(part[0] == "Filament used") {
+			        filament = part[1];
+			    }
+			    else if(part[0] == "Layer height") {
+			        materialdichte = part[1];
+			    }
+			}
+
+			console.log(filament);
+
+			var filamentWithoutMeter = filament.replace("m","");
+			var filamentWithoutSpace = filamentWithoutMeter.trim();
+
+			var materialdichteWithoutSpace = materialdichte.trim();
+
+			var filamentNum = parseFloat(filamentWithoutSpace);
+			var materialdichteNum = parseFloat(materialdichteWithoutSpace);
+
+			res.render('uploadInfo.ejs',
+			{ 
+				filename: filename,
+				filament: filamentWithoutSpace
+			});
+
+		});
+
+	 	
+
 		
 		
 		// Alternative 1
@@ -111,6 +180,6 @@ app.post('/upload', function(req, res){
 		**/
 	}
 
-	res.render('uploadInfo.ejs',{ info: filename});
+	
 
 });
