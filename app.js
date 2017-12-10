@@ -56,6 +56,8 @@ app.get('/check', function(req, res){
 	});
 	**/
 
+	// Test comment
+
 	db.collection("current_material").find({}).toArray(function(err, data) {
     if (err) throw err;
     console.log(data);
